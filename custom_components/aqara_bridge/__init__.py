@@ -105,15 +105,22 @@ async def async_setup_entry(hass, entry):
     await manager.start_msg_hanlder(
         data[CONF_ENTRY_APP_ID], data[CONF_ENTRY_APP_KEY], data[CONF_ENTRY_KEY_ID]
     )
+    aiotcloud.set_country(data.get(CONF_ENTRY_AUTH_COUNTRY_CODE))
+    aiotcloud.access_token = data.get(CONF_ENTRY_AUTH_ACCESS_TOKEN)
+    aiotcloud.refresh_token = data.get(CONF_ENTRY_AUTH_REFRESH_TOKEN)
+
     if (
         datetime.datetime.strptime(
             data.get(CONF_ENTRY_AUTH_EXPIRES_TIME), "%Y-%m-%d %H:%M:%S"
         )
         <= datetime.datetime.now()
     ):
-        resp = aiotcloud.async_refresh_token(data.get(CONF_ENTRY_AUTH_REFRESH_TOKEN))
+        resp = await aiotcloud.async_refresh_token(data.get(CONF_ENTRY_AUTH_REFRESH_TOKEN))
         if isinstance(resp, dict) and resp["code"] == 0:
             auth_entry = gen_auth_entry(
+                data.get(CONF_ENTRY_APP_ID),
+                data.get(CONF_ENTRY_APP_KEY),
+                data.get(CONF_ENTRY_KEY_ID),
                 data.get(CONF_ENTRY_AUTH_ACCOUNT),
                 data.get(CONF_ENTRY_AUTH_ACCOUNT_TYPE),
                 data.get(CONF_ENTRY_AUTH_COUNTRY_CODE),
@@ -123,10 +130,6 @@ async def async_setup_entry(hass, entry):
         else:
             # TODO 这里需要处理刷新令牌失败的情况
             return False
-    else:
-        aiotcloud.set_country(data.get(CONF_ENTRY_AUTH_COUNTRY_CODE))
-        aiotcloud.access_token = data.get(CONF_ENTRY_AUTH_ACCESS_TOKEN)
-        aiotcloud.refresh_token = data.get(CONF_ENTRY_AUTH_REFRESH_TOKEN)
 
     hass.data[DOMAIN][HASS_DATA_AUTH_ENTRY_ID] = entry
 

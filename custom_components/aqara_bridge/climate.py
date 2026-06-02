@@ -399,6 +399,7 @@ class AiotAirrtcVrfegl01Entity(AiotEntityBase, ClimateEntity):
 
         self.schedule_update_ha_state()
 
+        channel_id = "1"
         match = re.search(r"(\d+)\.(\d+)\.(\d+)", self.get_res_id_by_name("ac_state"))
         if match:
             channel_id = match.group(2)
@@ -407,13 +408,13 @@ class AiotAirrtcVrfegl01Entity(AiotEntityBase, ClimateEntity):
         mode_bin = bin(int(mode))[2:].zfill(4)
         fan_bin = bin(int(fan))[2:].zfill(4)
         swing_direction_bin = bin(
-            self.airrtc_vrfegl01_bin_cache["swing_direction"][channel_id]
+            self.airrtc_vrfegl01_bin_cache["swing_direction"].get(channel_id, 0)
         )[2:].zfill(2)
         swing_bin = bin(int(swing))[2:].zfill(2)
         temp_bin = bin(temp)[2:].zfill(8)
-        other_bin = bin(self.airrtc_vrfegl01_bin_cache["other"][channel_id])[2:].zfill(
-            8
-        )
+        other_bin = bin(
+            self.airrtc_vrfegl01_bin_cache["other"].get(channel_id, 0)
+        )[2:].zfill(8)
 
         bin_str = f"{power_bin}{mode_bin}{fan_bin}{swing_direction_bin}{swing_bin}{temp_bin}{other_bin}"
         return int(bin_str, 2)
@@ -453,6 +454,9 @@ class AiotAirrtcTcpecn02Entity(AiotEntityBase, ClimateEntity):
         self._attr_min_temp = kwargs.get("min_temp")
         self._attr_target_temperature_high = kwargs.get("max_temp")
         self._attr_target_temperature_low = kwargs.get("min_temp")
+
+        self.airrtc_tcpecn02_swing_direction = 0
+        self.airrtc_tcpecn02_other = 0
 
     def convert_res_to_attr(self, res_name, res_value):
         if res_name == "current_temperature":

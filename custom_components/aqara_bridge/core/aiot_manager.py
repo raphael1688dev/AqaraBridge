@@ -604,23 +604,49 @@ class AiotManager:
                     # 这里需要处理多通道特殊设备
                     if device.model == "lumi.airrtc.vrfegl01":
                         # VRF空调控制器
-                        resp = await self._session.async_query_resource_value(
-                            device.did, ["13.1.85"]
-                        )
-                        _LOGGER.info(f"resp: {resp}")
-                        ch_count = int(resp[0]["value"])
+                        try:
+                            resp = await self._session.async_query_resource_value(
+                                device.did, ["13.1.85"]
+                            )
+                            _LOGGER.info(f"resp: {resp}")
+                            if resp and isinstance(resp, list) and len(resp) > 0 and "value" in resp[0]:
+                                ch_count = int(resp[0]["value"])
+                            else:
+                                _LOGGER.warning(f"VRF AC Controller channel count query returned invalid response or empty: {resp}. Defaulting to 1.")
+                                ch_count = 1
+                        except Exception as ex:
+                            _LOGGER.warning(f"Failed to query channel count for VRF AC Controller: {ex}. Defaulting to 1.")
+                            ch_count = 1
                     elif device.model == "lumi.motion.agl001":
                         # 人体场景传感器 FP2
-                        fp2_ch_count = 0
-                        for x in range(30):
-                            try_get = await self._session.async_query_resource_value(
-                                device.did, [f"3.{x + 1}.85"]
+                        try:
+                            resource_ids = [f"3.{x + 1}.85" for x in range(30)]
+                            resp = await self._session.async_query_resource_value(
+                                device.did, resource_ids
                             )
-                            if not try_get:
-                                break
+                            if resp and isinstance(resp, list):
+                                existing_channels = set()
+                                for item in resp:
+                                    res_id = item.get("resourceId")
+                                    if res_id:
+                                        parts = res_id.split(".")
+                                        if len(parts) == 3 and parts[0] == "3" and parts[2] == "85":
+                                            try:
+                                                channel_num = int(parts[1])
+                                                existing_channels.add(channel_num)
+                                            except ValueError:
+                                                pass
+                                if existing_channels:
+                                    ch_count = max(existing_channels)
+                                else:
+                                    _LOGGER.warning("No FP2 channels found in response. Defaulting to 1.")
+                                    ch_count = 1
                             else:
-                                fp2_ch_count += 1
-                        ch_count = fp2_ch_count
+                                _LOGGER.warning(f"FP2 sensor resource query returned invalid response or empty: {resp}. Defaulting to 1.")
+                                ch_count = 1
+                        except Exception as ex:
+                            _LOGGER.warning(f"Failed to query batch resources for FP2 sensor: {ex}. Defaulting to 1.")
+                            ch_count = 1
 
                 if params[j].get(MK_MAPPING_PARAMS):
                     ch_count = params[j][MK_MAPPING_PARAMS].get("ch_count", None)
