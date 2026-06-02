@@ -184,7 +184,7 @@ class OptionsFlowHandler(OptionsFlow):
         """Configure an aqara device through the Aqara Cloud."""
         errors = {}
         if isinstance(user_input, dict):
-            # 用户输入
+            # User input
             self.account = user_input.get(CONF_FIELD_ACCOUNT)
             self.country_code = user_input.get(CONF_FIELD_COUNTRY_CODE)
             if self._session is None:
@@ -196,7 +196,7 @@ class OptionsFlowHandler(OptionsFlow):
 
             refresh_token = user_input.get(CONF_FIELD_REFRESH_TOKEN)
             if refresh_token and refresh_token != "":
-                # 更新了token值
+                # Token values updated
                 resp = await self._session.async_refresh_token(refresh_token)
                 if resp["code"] == 0:
                     auth_entry = gen_auth_entry(

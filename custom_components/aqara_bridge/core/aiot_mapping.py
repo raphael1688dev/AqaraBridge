@@ -47,7 +47,7 @@ MK_RESOURCES = "resources"
 MK_HASS_NAME = "hass_attr_name"
 
 AIOT_DEVICE_MAPPING = [
-    ############################ Aqara M1S网关###################################
+    ############################ Aqara M1SGateway###################################
     {
         "lumi.gateway.aeu01": ["Aqara", "Gateway M1S", "ZHWG15LM"],
         "lumi.gateway.acn01": ["Aqara", "Gateway M1S", "ZHWG15LM"],
@@ -85,7 +85,7 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###########################绿米H1、E1、M2、M3、集悦S1网关#############################
+    ###########################Aqara H1, E1, M2, M3, Magicpad S1 Gateways#############################
     {
         "lumi.gateway.sacn01": ["Aqara", "Smart Hub H1", "QBCZWG11LM"],
         "lumi.gateway.aqcn02": ["Aqara", "Hub E1", "ZHWG16LM"],
@@ -98,7 +98,7 @@ AIOT_DEVICE_MAPPING = [
         "lumi.controller.a4acn1": ["Aqara", "GateWay JY S1", ""],
         "params": [],
     },
-    ###############################网关/摄像机########################################
+    ###############################Gateway / Camera########################################
     {
         "lumi.camera.gwpagl01": ["Aqara", "Camera G3 (Gateway)", ""],
         "params": [
@@ -119,7 +119,7 @@ AIOT_DEVICE_MAPPING = [
                             "10",
                         ],
                         "unique_id_extra": "face",
-                        "entity_name": "人脸识别",
+                        "entity_name": "Face Recognition",
                     },
                     MK_RESOURCES: {
                         "detect_face_event": ("13.95.85", "_attr_native_value"),
@@ -132,7 +132,7 @@ AIOT_DEVICE_MAPPING = [
                         MK_HASS_NAME: "camera",
                         "event_types_mapping": HUMAN_MAPPING,
                         "unique_id_extra": "human",
-                        "entity_name": "人体识别",
+                        "entity_name": "Body Recognition",
                     },
                     MK_RESOURCES: {
                         "detect_human_event": ("13.97.85", "_attr_native_value"),
@@ -145,7 +145,7 @@ AIOT_DEVICE_MAPPING = [
                         MK_HASS_NAME: "camera",
                         "event_types_mapping": PET_MAPPING,
                         "unique_id_extra": "pet",
-                        "entity_name": "宠物识别",
+                        "entity_name": "Pet Recognition",
                     },
                     MK_RESOURCES: {
                         "detect_pets_event": ("13.98.85", "_attr_native_value"),
@@ -158,7 +158,7 @@ AIOT_DEVICE_MAPPING = [
                         MK_HASS_NAME: "camera",
                         "event_types_mapping": GESTURE_MAPPING,
                         "unique_id_extra": "gesture",
-                        "entity_name": "手势识别",
+                        "entity_name": "Gesture Recognition",
                     },
                     MK_RESOURCES: {
                         "detect_gesture_event": ("13.96.85", "_attr_native_value"),
@@ -171,7 +171,7 @@ AIOT_DEVICE_MAPPING = [
                         MK_HASS_NAME: "camera",
                         "event_types_mapping": MOVING_MAPPING,
                         "unique_id_extra": "moving",
-                        "entity_name": "移动侦测",
+                        "entity_name": "Motion Detection",
                     },
                     MK_RESOURCES: {
                         "detect_moving_event": ("3.21.85", "_attr_native_value"),
@@ -184,7 +184,7 @@ AIOT_DEVICE_MAPPING = [
                         MK_HASS_NAME: "camera",
                         "event_types_mapping": SOUND_MAPPING,
                         "unique_id_extra": "sound",
-                        "entity_name": "异常声音",
+                        "entity_name": "Abnormal Sound",
                     },
                     MK_RESOURCES: {
                         "detect_sound_event": ("3.22.85", "_attr_native_value"),
@@ -193,10 +193,10 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ################################墙壁开关#########################################
-    ###单键
+    ################################Wall Switch#########################################
+    ###Single Key
     {
-        # 卡农 智能墙壁开关 Z1 Pro（单键版）
+        # Canon Smart Wall Switch Z1 Pro (Single Key)
         "lumi.switch.acn056": ["Aqara", "KN Wall Switch Z1 Pro (Single Rocker)", ""],
         "params": [
             {
@@ -214,7 +214,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.21.85", "_attr_trigger")},
                 }
@@ -224,7 +224,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -254,7 +254,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1 Pro（双键版）
+        # Canon Smart Wall Switch Z1 Pro (Double Keys)
         "lumi.switch.acn057": ["Aqara", "KN Wall Switch Z1 Pro (Double Rocker)", ""],
         "params": [
             {
@@ -273,7 +273,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 2, "ch_start": 21},
@@ -284,7 +284,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -314,7 +314,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1 Pro（三键版）
+        # Canon Smart Wall Switch Z1 Pro (Triple Keys)
         "lumi.switch.acn058": ["Aqara", "KN Wall Switch Z1 Pro (Three Rocker)", ""],
         "params": [
             {
@@ -333,7 +333,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_3_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 3, "ch_start": 21},
@@ -344,7 +344,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -374,9 +374,9 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1 Pro（四键版）
+        # Canon Smart Wall Switch Z1 Pro (Quadruple Keys)
         "lumi.switch.acn059": ["Aqara", "KN Wall Switch Z1 Pro (Four Rocker)", ""],
-        # 智能墙壁开关 Q1（四键版）
+        # Smart Wall Switch Q1 (Quadruple Keys)
         "lumi.switch.acn065": ["Aqara", "Wall Switch Q1 (Four Rocker)", ""],
         "params": [
             {
@@ -395,7 +395,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_3_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 4, "ch_start": 21},
@@ -406,7 +406,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -436,7 +436,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1（单键版）
+        # Canon Smart Wall Switch Z1 (Single Key)
         "lumi.switch.acn054": ["Aqara", "KN Wall Switch Z1 (Single Rocker)", ""],
         "params": [
             {
@@ -454,7 +454,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.21.85", "_attr_trigger")},
                 }
@@ -484,7 +484,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1（双键版）
+        # Canon Smart Wall Switch Z1 (Double Keys)
         "lumi.switch.acn054": ["Aqara", "KN Wall Switch Z1 (Double Rocker)", ""],
         "params": [
             {
@@ -503,7 +503,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_3_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 2, "ch_start": 21},
@@ -534,7 +534,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1（三键版）
+        # Canon Smart Wall Switch Z1 (Triple Keys)
         "lumi.switch.acn054": ["Aqara", "KN Wall Switch Z1 (Three Rocker)", ""],
         "params": [
             {
@@ -553,7 +553,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_3_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 3, "ch_start": 21},
@@ -584,7 +584,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 卡农 智能墙壁开关 Z1（四键版）
+        # Canon Smart Wall Switch Z1 (Quadruple Keys)
         "lumi.switch.acn055": ["Aqara", "KN Wall Switch Z1 (Four Rocker)", ""],
         "params": [
             {
@@ -603,7 +603,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_3_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.{}.85", "_attr_trigger")},
                     MK_MAPPING_PARAMS: {"ch_count": 4, "ch_start": 21},
@@ -634,7 +634,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能墙壁开关 Q1（单键版）
+        # Smart Wall Switch Q1 (Single Key)
         "lumi.switch.acn062": ["Aqara", "Wall Switch Q1 (Single Rocker)", ""],
         "params": [
             {
@@ -652,7 +652,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": KN_BUTTON_MAPPING,
-                        "entity_name": "无线开关",
+                        "entity_name": "Wireless Switch",
                     },
                     MK_RESOURCES: {"event": ("13.21.85", "_attr_trigger")},
                 }
@@ -662,7 +662,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -692,7 +692,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能墙壁开关 Q1（双键版）
+        # Smart Wall Switch Q1 (Double Keys)
         "lumi.switch.acn063": ["Aqara", "KN Wall Switch Q1 (Double Rocker)", ""],
         "params": [
             {
@@ -711,7 +711,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "slide",
                         "event_mapping": KN_SLIDE_MAPPING,
-                        "entity_name": "滑条",
+                        "entity_name": "Slider",
                     },
                     MK_RESOURCES: {"event": ("13.1.85", "_attr_trigger")},
                 }
@@ -741,21 +741,21 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 墙壁开关（零火线单键版）
+        # Wall Switch (Neutral, Single Key)
         "lumi.ctrl_ln1.v1": ["Aqara", "Wall Switch (Single Rocker)", ""],
-        # 墙壁开关H1M（零火线单键版）
+        # Wall Switch H1M (Neutral, Single Key)
         "lumi.switch.acn029": ["Aqara", "Wall Switch H1M (Single Rocker)", ""],
-        # 墙壁开关X1（零火线单键版）
+        # Wall Switch X1 (Neutral, Single Key)
         "lumi.switch.acn004": ["Aqara", "Wall Switch X1 (Single Rocker)", ""],
-        # 墙壁开关H1（零火线单键版）
+        # Wall Switch H1 (Neutral, Single Key)
         "lumi.switch.n1acn1": ["Aqara", "Wall Switch H1 (Single Rocker)", "QBKG27LM"],
-        # 墙壁开关T1（零火线单键版）
+        # Wall Switch T1 (Neutral, Single Key)
         "lumi.switch.b1nacn01": ["Aqara", "Wall Switch T1 (Single Rocker)", ""],
-        # 墙壁开关D1（零火线单键版）
+        # Wall Switch D1 (Neutral, Single Key)
         "lumi.switch.b1nacn02": ["Aqara", "Wall Switch D1 (Single Rocker)", ""],
-        # 墙壁开关E1（零火线单键版）
+        # Wall Switch E1 (Neutral, Single Key)
         "lumi.switch.b1nc01": ["Aqara", "Wall Switch E1 (Single Rocker)", ""],
-        # 智能墙壁开关 J1（零火线单键版）
+        # Smart Wall Switch J1 (Neutral, Single Key)
         "lumi.switch.acn044": ["Aqara", "Wall Switch J1 (Single Rocker)", ""],
         "params": [
             {
@@ -794,19 +794,19 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 墙壁开关（单火线单键版）
+        # Wall Switch (No Neutral, Single Key)
         "lumi.ctrl_neutral1.v1": ["Aqara", "Wall Switch (Single Rocker)", "QBKG04LM"],
-        # 墙壁开关X1（单火线单键版）
+        # Wall Switch X1 (No Neutral, Single Key)
         "lumi.switch.acn001": ["Aqara", "Wall Switch X1 (Single Rocker)", ""],
-        # 墙壁开关H1（单火线单键版）
+        # Wall Switch H1 (No Neutral, Single Key)
         "lumi.switch.l1acn1": ["Aqara", "Wall Switch H1 (Single Rocker)", "QBKG27LM"],
-        # 墙壁开关T1（单火线单键版）
+        # Wall Switch T1 (No Neutral, Single Key)
         "lumi.switch.b1lacn01": ["Aqara", "Wall Switch T1 (Single Rocker)", ""],
-        # 墙壁开关D1（单火线单键版）
+        # Wall Switch D1 (No Neutral, Single Key)
         "lumi.switch.b1lacn02": ["Aqara", "Wall Switch D1 (Single Rocker)", ""],
-        # 墙壁开关E1（单火线单键版）
+        # Wall Switch E1 (No Neutral, Single Key)
         "lumi.switch.b1lc04": ["Aqara", "Wall Switch E1 (Single Rocker)", ""],
-        # 墙壁开关J1（单火线单键版）
+        # Wall SwitchJ1（No Neutral Single Key）
         "lumi.switch.acn041": ["Aqara", "Wall Switch J1 (Single Rocker)", ""],
         "params": [
             {
@@ -822,21 +822,21 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###双键
+    ###Double Keys
     {
-        # 墙壁开关（零火线双键版）
+        # Wall Switch（Neutral Double Keys）
         "lumi.ctrl_ln2.v1": ["Aqara", "Wall Switch (Double Rocker)", ""],
-        # 墙壁开关H1M（零火线双键版）
+        # Wall Switch H1M (Neutral, Double Keys)
         "lumi.switch.acn030": ["Aqara", "Wall Switch H1M (Double Rocker)", ""],
-        # 墙壁开关X1（零火线双键版）
+        # Wall Switch X1 (Neutral, Double Keys)
         "lumi.switch.acn005": ["Aqara", "Wall Switch X1 (Double Rocker)", ""],
-        # 墙壁开关H1（零火线双键版）
+        # Wall Switch H1 (Neutral, Double Keys)
         "lumi.switch.n2acn1": ["Aqara", "Wall Switch H1 (Double Rocker)", "QBKG27LM"],
-        # 墙壁开关T1（零火线双键版）
+        # Wall Switch T1 (Neutral, Double Keys)
         "lumi.switch.b2nacn01": ["Aqara", "Wall Switch T1 (Double Rocker)", ""],
-        # 墙壁开关D1（零火线双键版）
+        # Wall Switch D1 (Neutral, Double Keys)
         "lumi.switch.b2nacn02": ["Aqara", "Wall Switch D1 (Double Rocker)", ""],
-        # 墙壁开关E1（零火线双键版）
+        # Wall Switch E1 (Neutral, Double Keys)
         "lumi.switch.b2nc01": ["Aqara", "Wall Switch E1 (Double Rocker)", ""],
         "params": [
             {
@@ -876,7 +876,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能墙壁开关 J1（零火线双键版）
+        # Smart Wall Switch J1 (Neutral, Double Keys)
         "lumi.switch.acn045": ["Aqara", "Wall Switch J1 (Double Rocker)", ""],
         "params": [
             {
@@ -905,19 +905,19 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 墙壁开关（单火线双键版）
+        # Wall Switch（No Neutral Double Keys）
         "lumi.ctrl_neutral2.v1": ["Aqara", "Wall Switch (Double Rocker)", "QBKG04LM"],
-        # 墙壁开关X1（单火线双键版）
+        # Wall Switch X1 (No Neutral, Double Keys)
         "lumi.switch.acn002": ["Aqara", "Wall Switch X1 (Double Rocker)", ""],
-        # 墙壁开关H1（单火线双键版）
+        # Wall Switch H1 (No Neutral, Double Keys)
         "lumi.switch.l2acn1": ["Aqara", "Wall Switch H1 (Double Rocker)", "QBKG28LM"],
-        # 墙壁开关T1（单火线双键版）
+        # Wall Switch T1 (No Neutral, Double Keys)
         "lumi.switch.b2lacn01": ["Aqara", "Wall Switch T1 (Double Rocker)", ""],
-        # 墙壁开关D1（单火线双键版）
+        # Wall Switch D1 (No Neutral, Double Keys)
         "lumi.switch.b2lacn02": ["Aqara", "Wall Switch D1 (Double Rocker)", "QBKG21LM"],
-        # 墙壁开关E1（单火线双键版）
+        # Wall Switch E1 (No Neutral, Double Keys)
         "lumi.switch.b2lc04": ["Aqara", "Wall Switch E1 (Double Rocker)", "QBKG21LM"],
-        # 智能墙壁开关 J1（单火线双键版）
+        # Smart Wall Switch J1 (No Neutral, Double Keys)
         "lumi.switch.acn042": ["Aqara", "Wall Switch J1 (Double Rocker)", ""],
         "params": [
             {
@@ -934,19 +934,19 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###三键
+    ###Triple Keys
     {
-        # 墙壁开关H1M（零火线三键版）
+        # Wall Switch H1M (Neutral, Triple Keys)
         "lumi.switch.acn031": ["Aqara", "Wall Switch H1M (Three Rocker)", ""],
-        # 墙壁开关X1（零火线三键版）
+        # Wall Switch X1 (Neutral, Triple Keys)
         "lumi.switch.acn006": ["Aqara", "Wall Switch X1 (Three Rocker)", ""],
-        # 墙壁开关H1（零火线三键版）
+        # Wall SwitchH1（Neutral Triple Keys）
         "lumi.switch.n3acn1": ["Aqara", "Wall Switch H1 (Three Rocker)", "QBKG27LM"],
-        # 墙壁开关T1（零火线三键版）
+        # Wall SwitchT1（Neutral Triple Keys）
         "lumi.switch.b3n01": ["Aqara", "Wall Switch T1 (Three Rocker)", ""],
-        # 智能场景面板开关 S1（零火线三键版）
+        # SmartScene Panel Switch S1（Neutral Triple Keys）
         "lumi.switch.n4acn4": ["Aqara", "screen panel S1 (Three Rocker)", ""],
-        # 智能墙壁开关D1（零火线三键版）
+        # SmartWall Switch D1 (Neutral, Triple Keys)
         "lumi.switch.n3acn3": ["Aqara", "Wall Switch D1 (Three Rocker)", ""],
         "params": [
             {
@@ -986,15 +986,15 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能墙壁开关 E1（零火线三键版）
+        # SmartWall Switch E1（Neutral Triple Keys）
         "lumi.switch.acn040": ["Aqara", "Wall Switch E1 (Three Rocker)", ""],
-        # 智能墙壁开关 J1（零火线三键版）
+        # Smart Wall Switch J1 (Neutral, Triple Keys)
         "lumi.switch.acn046": ["Aqara", "Wall Switch J1 (Three Rocker)", ""],
-        # 妙控开关 V1（四键版）
+        # Magic Switch V1（Quadruple Keys version）
         "lumi.switch.acn051": ["Aqara", "Wall Switch V1", ""],
-        # 繁星旋钮 V1
+        # Starry Knob V1
         "lumi.switch.acn053": ["Aqara", "Wall Switch V1", ""],
-        # 妙控开关 S1E
+        # Magic Switch S1E
         "lumi.switch.acn032": ["Aqara", "Wall Switch S1E", ""],
         "params": [
             {
@@ -1011,13 +1011,13 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 墙壁开关X1（单火线三键版）
+        # Wall Switch X1 (No Neutral, Triple Keys)
         "lumi.switch.acn003": ["Aqara", "Wall Switch X1 (Three Rocker)", ""],
-        # 墙壁开关H1（单火线三键版）
+        # Wall SwitchH1（No Neutral Triple Keys）
         "lumi.switch.l3acn1": ["Aqara", "Wall Switch H1 (Three Rocker)", "QBKG29LM"],
-        # 墙壁开关T1（单火线三键版）
+        # Wall SwitchT1（No Neutral Triple Keys）
         "lumi.switch.b3l01": ["Aqara", "Wall Switch T1 (Three Rocker)", ""],
-        # 智能墙壁开关D1（单火线三键版）
+        # SmartWall Switch D1 (No Neutral, Triple Keys)
         "lumi.switch.l3acn3": ["Aqara", "Wall Switch D1 (Three Rocker)", ""],
         "params": [
             {
@@ -1035,7 +1035,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 墙壁开关J1（单火线三键版）
+        # Wall SwitchJ1（No Neutral Triple Keys）
         "lumi.switch.acn043": ["Aqara", "Wall Switch J1 (Three Rocker)", ""],
         "params": [
             {
@@ -1051,25 +1051,25 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ##########################通断器、插座开关#######################################
+    ##########################Switch Module、Socket Switch#######################################
     {
-        # 单路控制器 T1（单火版）
+        # Single Channel Controller T1（No Neutral）
         "lumi.switch.l0acn1": ["Aqara", "Wall Switch (Single Rocker)", ""],
-        # 单路控制器（零火版）
+        # Single Channel Controller（Neutral）
         "lumi.switch.n0acn2": ["Aqara", "Wall Switch (Single Rocker)", ""],
-        # 智能插座 (国标)
+        # Smart Plug (GB)
         "lumi.plug.v1": ["Xiaomi", "Plug", "ZNCZ02LM"],
-        # 智能插座 (国标)
+        # Smart Plug (GB)
         "lumi.plug.aq1": ["Xiaomi", "Plug", ""],
-        # 智能插座T1 (国标)
+        # Smart PlugT1 (GB)
         "lumi.plug.macn01": ["Aqara", "Plug T1", ""],
-        # 智能墙壁插座 X1（USB版）
+        # SmartWallSocket X1（USBversion）
         "lumi.plug.acn003": ["Aqara", "Smart Wall Outlet X1(USB)", ""],
-        # 智能墙壁插座 H1（USB版）
+        # SmartWallSocket H1（USBversion）
         "lumi.plug.sacn03": ["Aqara", "Smart Wall Outlet H1(USB)", "QBCZWG11LM"],
-        # 智能墙壁插座 H1
+        # SmartWallSocket H1
         "lumi.plug.sacn02": ["Aqara", "Smart Wall Outlet H1", "QBCZWG11LM"],
-        # 墙壁插座（Zigbee版）
+        # WallSocket（Zigbeeversion）
         "lumi.ctrl_86plug.aq1": ["Aqara", "Plug AQ1", ""],
         "params": [
             {
@@ -1107,11 +1107,11 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###双路控制器、继电器
+    ###Dual Relay、Relay
     {
-        # 双路控制器
+        # Dual Relay
         "lumi.relay.c2acn01": ["Aqara", "Double Way Controller", ""],
-        # 双路控制模块 T2
+        # Dual Relay Module T2
         "lumi.switch.acn047": ["Aqara", "Double Way Controller T2", ""],
         "params": [
             {
@@ -1150,24 +1150,24 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###############################调光器###########################################
-    # 亮度类
+    ###############################Dimmer###########################################
+    # Brightness type
     {
-        # Aqara 智能恒流驱动器 T1-1
+        # Aqara Smart Constant Current Driver T1-1
         "lumi.light.cbacn1": ["Aqara", "Constant current driver T1", ""],
-        # 轨道格栅灯 H1（6头）
+        # Track Grid Light H1 (6 heads)
         "lumi.light.acn007": ["Aqara", "H1 LED Light", ""],
-        # 轨道格栅灯 H1（12头）
+        # Track Grid Light H1 (12 heads)
         "lumi.light.acn008": ["Aqara", "H1 LED Light", ""],
-        # 轨道泛光灯 H1（30cm）
+        # Track Flood Light H1 (30cm)
         "lumi.light.acn009": ["Aqara", "H1 LED Light", ""],
-        # 轨道泛光灯 H1（60cm）
+        # Track Flood Light H1 (60cm)
         "lumi.light.acn010": ["Aqara", "H1 LED Light", ""],
-        # 轨道吊线灯 H1
+        # Track Pendant Light H1
         "lumi.light.acn011": ["Aqara", "H1 LED Light", ""],
-        # 轨道折叠格栅灯 H1（6头）
+        # Track Folding Grid Light H1 (6 heads)
         "lumi.light.acn012": ["Aqara", "H1 LED Light", ""],
-        # 轨道偏光灯 H1（22cm）
+        # Track Polarized Light H1 (22cm)
         "lumi.light.acn013": ["Aqara", "H1 LED Light", ""],
         "params": [
             {
@@ -1188,35 +1188,35 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    # 色温类
+    # Color Temp type
     {
-        # LED灯泡（可调色温）
+        # LEDBulb（Adjustable Color Temp）
         "lumi.light.aqcn02": ["Aqara", "Bulb", "ZNLDP12LM"],
-        # 吸顶灯MX960（可调色温）
+        # Ceiling Light MX960 (Color Temp adjustable)
         "lumi.light.cwopcn01": ["Aqara", "Opple MX960", "XDD11LM"],
-        # 吸顶灯MX650（可调色温）
+        # Ceiling Light MX650 (Color Temp adjustable)
         "lumi.light.cwopcn02": ["Aqara", "Opple MX650", "XDD12LM"],
-        # 吸顶灯MX480（可调色温）
+        # Ceiling Light MX480 (Color Temp adjustable)
         "lumi.light.cwopcn03": ["Aqara", "Opple MX480", "XDD13LM"],
-        # Aqara智能调光模块T1（0-10v）
+        # AqaraSmartDimmer ModuleT1（0-10v）
         "lumi.light.cwacn1": ["Aqara", "0-10V Dimmer", "ZNTGMK12LM"],
-        # 射灯（可调色温）
+        # Spotlight (Color Temp adjustable)
         "lumi.light.cwjwcn01": ["Aqara", "Spotlight", ""],
-        # 筒灯（可调色温）
+        # Downlight (Color Temp adjustable)
         "lumi.light.cwjwcn02": ["Aqara", "Spotlight", ""],
-        # Aqara 双色温驱动器 T1 Pro
+        # Aqara Dual Color Temp Driver T1 Pro
         "lumi.light.acn004": ["Aqara", "Double Color Temp Driver T1 Pro", ""],
-        # 轨道灯 H1 Pro
+        # Track Light H1 Pro
         "lumi.light.acn006": ["Aqara", "Rail Light H1 Pro", ""],
-        # 射灯 T2（15度）
+        # Spotlight T2 (15 Degrees)
         "lumi.light.acn023": ["Aqara", "Spotlight T2", ""],
-        # 射灯 T2（24度）
+        # Spotlight T2 (24 Degrees)
         "lumi.light.acn024": ["Aqara", "Spotlight T2", ""],
-        # 射灯 T2（36度）
+        # Spotlight T2 (36 Degrees)
         "lumi.light.acn025": ["Aqara", "Spotlight T2", ""],
-        # 筒灯 T2（60度）
+        # Downlight T2 (60 Degrees)
         "lumi.light.acn026": ["Aqara", "Spotlight T2", ""],
-        # 筒射灯 T3
+        # Spotlight/Downlight T3
         "lumi.light.acn128": ["Aqara", "Spotlight T3", ""],
         "params": [
             {
@@ -1242,13 +1242,13 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # Aqara LED灯泡 T1
+        # Aqara LED Bulb T1
         "lumi.light.cwac02": ["Aqara", "Bulb T1", "ZNLDP13LM"],
-        # LED灯泡 T1（可调色温）
+        # LED Bulb T1 (Color Temp adjustable)
         "lumi.light.acn014": ["Aqara", "Bulb T1", ""],
-        # Aqara 吸顶灯 L1-350
+        # Aqara Ceiling Light L1-350
         "lumi.light.acn003": ["Aqara", "Light L1-350", ""],
-        # Aqara光艺晴空灯 H1
+        # AqaraSkylight H1
         "lumi.light.acn015": ["Aqara", "Light H1", ""],
         "params": [
             {
@@ -1274,7 +1274,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 幻彩吸顶灯 T1（40W）
+        # Ambient Ceiling Light T1 (40W)
         "lumi.light.acn032": ["Aqara", "Ceiling Light T1", ""],
         "params": [
             {
@@ -1320,7 +1320,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能灯带驱动器 T1 (60W/120W/240W)
+        # Smart LED Strip Driver T1 (60W/120W/240W)
         "lumi.dimmer.acn003": ["Aqara", "LED Strip Dimmer T1", "ZNDDQDQ11LM"],
         "lumi.dimmer.acn004": ["Aqara", "LED Strip Dimmer T1", "ZNDDQDQ12LM"],
         "lumi.dimmer.acn005": ["Aqara", "LED Strip Dimmer T1", "ZNDDQDQ13LM"],
@@ -1346,11 +1346,11 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    # RGB类
+    # RGB type
     {
-        # Aqara智能调光模块 T1
+        # AqaraSmartDimmer Module T1
         "lumi.light.rgbac1": ["Aqara", "RGBW LED Controller T1", "ZNTGMK11LM"],
-        # Aqara智能灯带驱动模块
+        # AqaraSmartLED Strip Driver Module
         "lumi.dimmer.rcbac1": ["Aqara", "RGBW LED Dimmer", "ZNDDMK11LM"],
         "params": [
             {
@@ -1375,7 +1375,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 流光溢彩灯带 T1
+        # LED Strip T1
         "lumi.light.acn132": ["Aqara", "RGB LED Belt T1", ""],
         "params": [
             {
@@ -1398,23 +1398,23 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ##################################窗帘##################################
+    ##################################Curtain##################################
     {
-        # 智能窗帘电机 (Zigbee开合帘版)
+        # SmartCurtain Motor (ZigbeeCurtain version)
         "lumi.curtain.v1": ["Aqara", "Curtain Motor Zigbee", ""],
-        # Aqara智能窗帘电机 T1
+        # AqaraSmartCurtain Motor T1
         "lumi.curtain.acn007": ["Aqara", "Curtain Motor T1", ""],
-        # 智能窗帘电机 C2
+        # SmartCurtain Motor C2
         "lumi.curtain.hagl07": ["Aqara", "Curtain Motor C2", ""],
-        # Aqara智能窗帘电机A1
+        # AqaraSmartCurtain MotorA1
         "lumi.curtain.hagl08": ["Aqara", "Curtain Motor A1", ""],
-        # 智能窗帘电机 B1
+        # SmartCurtain Motor B1
         "lumi.curtain.hagl04": ["Aqara", "Curtain Motor B1", ""],
-        # Aqara智能窗帘电机 T2
+        # AqaraSmartCurtain Motor T2
         "lumi.curtain.acn015": ["Aqara", "Curtain Motor T2", ""],
-        # 智能管状电机
+        # Smart Tubular Motor
         "lumi.curtain.aq2": ["Aqara", "Tube Motor", ""],
-        # 智能管状电机 T1
+        # Smart Tubular Motor T1
         "lumi.curtain.vagl02": ["Aqara", "Tube Motor T1", ""],
         "params": [
             {
@@ -1442,7 +1442,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能窗帘电机 B1
+        # SmartCurtain Motor B1
         "lumi.curtain.hagl04": ["Aqara", "Curtain Motor B1", ""],
         "params": [
             {
@@ -1481,7 +1481,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # Aqara智能窗帘电机 C3
+        # AqaraSmartCurtain Motor C3
         "lumi.curtain.acn04": ["Aqara", "Curtain Motor C3", ""],
         "params": [
             {
@@ -1509,7 +1509,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能窗帘伴侣E1
+        # SmartCurtain CompanionE1
         "lumi.curtain.acn003": ["Aqara", "Curtain Partner E1", ""],
         "params": [
             {
@@ -1547,7 +1547,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能卷帘伴侣E1
+        # SmartRoller Shade CompanionE1
         "lumi.curtain.acn002": ["Aqara", "Curtain Partner E1", ""],
         "params": [
             {
@@ -1573,9 +1573,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ##################################晾衣机##################################
+    ##################################Clothes Dryer##################################
     {
-        # 智能晾衣机H1
+        # Smart Clothes Dryer H1
         "lumi.airer.acn001": ["Aqara", "Airer H1", ""],
         "params": [
             {
@@ -1608,7 +1608,7 @@ AIOT_DEVICE_MAPPING = [
                 "switch": {
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "switch",
-                        "entity_name": "风干",
+                        "entity_name": "Air Dry",
                         "unique_id_extra": "2",
                     },
                     MK_RESOURCES: {
@@ -1620,7 +1620,7 @@ AIOT_DEVICE_MAPPING = [
                 "switch": {
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "switch",
-                        "entity_name": "烘干",
+                        "entity_name": "Dry",
                         "unique_id_extra": "3",
                     },
                     MK_RESOURCES: {
@@ -1632,7 +1632,7 @@ AIOT_DEVICE_MAPPING = [
                 "switch": {
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "switch",
-                        "entity_name": "消毒",
+                        "entity_name": "Disinfect",
                         "unique_id_extra": "4",
                     },
                     MK_RESOURCES: {
@@ -1643,7 +1643,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # Aqara智能晾衣机 Lite
+        # Aqara Smart Clothes Dryer Lite
         "lumi.airer.acn02": ["Aqara", "Airer Lite", ""],
         "params": [
             {
@@ -1678,67 +1678,67 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ##################################无线开关##################################
+    ##################################Wireless Switch##################################
     {
-        # 无线开关（贴墙式单键版）
+        # Wireless Switch（WirelessSingle Key version）
         "lumi.remote.b186acn01": ["Aqara", "Single Wall Button", "WXKG03LM"],
-        # 无线开关T1
+        # Wireless SwitchT1
         "lumi.remote.b1acn02": [
             "Aqara",
             "Wireless Remote Switch T1 (Single Rocker)",
             "",
         ],
-        # 无线开关
+        # Wireless Switch
         "lumi.remote.b1acn01": ["Aqara", "Wireless Remote Switch (Single Rocker)", ""],
-        # 无线开关
+        # Wireless Switch
         "lumi.sensor_switch.v1": [
             "Aqara",
             "Wireless Remote Switch (Single Rocker)",
             "",
         ],
-        # 无线开关
+        # Wireless Switch
         "lumi.sensor_switch.v2": [
             "Aqara",
             "Wireless Remote Switch (Single Rocker)",
             "",
         ],
-        # 无线开关
+        # Wireless Switch
         "lumi.sensor_switch.aq2": [
             "Aqara",
             "Wireless Remote Switch (Single Rocker)",
             "",
         ],
-        # 无线开关（升级版）
+        # Wireless Switch（Enhanced version）
         "lumi.sensor_switch.aq3": [
             "Aqara",
             "Wireless Remote Switch Plus (Single Rocker)",
             "",
         ],
-        # 无线开关H1（贴墙式单键版）
+        # Wireless SwitchH1（WirelessSingle Key version）
         "lumi.remote.b18ac1": [
             "Aqara",
             "Wireless Remote Switch H1 (Single Rocker)",
             "WXKG14LM",
         ],
-        # 无线开关E1（贴墙式单键版）
+        # Wireless SwitchE1（WirelessSingle Key version）
         "lumi.remote.acn003": [
             "Aqara",
             "Wireless Remote Switch E1 (Single Rocker)",
             "",
         ],
-        # 无线开关E1（贴墙式单键版）
+        # Wireless SwitchE1（WirelessSingle Key version）
         "lumi.remote.acn007": [
             "Aqara",
             "Wireless Remote Switch E1 (Single Rocker)",
             "WXKG16LM",
         ],
-        # 无线开关D1（贴墙式单键版）
+        # Wireless SwitchD1（WirelessSingle Key version）
         "lumi.remote.b186acn02": [
             "Aqara",
             "Wireless Remote Switch D1 (Single Rocker)",
             "WXKG06LM",
         ],
-        # 无线开关T1（贴墙式单键版）
+        # Wireless SwitchT1（WirelessSingle Key version）
         "lumi.remote.b186acn03": [
             "Aqara",
             "Wireless Remote Switch T1 (Single Rocker)",
@@ -1756,29 +1756,29 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###无线双键
+    ###Wireless 2-Key
     {
-        # 无线场景开关（双键版）
+        # Wireless Scene Switch（Double Keys version）
         "lumi.remote.b286acn01": ["Aqara", "Double Wall Button", "WXKG02LM"],
-        # 无线开关H1（贴墙式双键版）
+        # Wireless SwitchH1（WirelessDouble Keys version）
         "lumi.remote.b28ac1": [
             "Aqara",
             "Wireless Remote Switch H1 (Double Rocker)",
             "WXKG15LM",
         ],
-        # 无线开关E1（贴墙式双键版）
+        # Wireless SwitchE1（WirelessDouble Keys version）
         "lumi.remote.acn004": [
             "Aqara",
             "Wireless Remote Switch E1 (Double Rocker)",
             "WXKG17LM",
         ],
-        # 无线开关D1（贴墙式双键版）
+        # Wireless SwitchD1（WirelessDouble Keys version）
         "lumi.remote.b286acn02": [
             "Aqara",
             "Wireless Remote Switch D1 (Double Rocker)",
             "WXKG07LM",
         ],
-        # 无线开关T1（贴墙式双键版）
+        # Wireless SwitchT1（WirelessDouble Keys version）
         "lumi.remote.b286acn03": [
             "Aqara",
             "Wireless Remote Switch T1 (Double Rocker)",
@@ -1797,9 +1797,9 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###无线四键
+    ###Wireless 4-Key
     {
-        # 无线场景开关（四键版）
+        # Wireless Scene Switch（Quadruple Keys version）
         "lumi.remote.b486opcn01": ["Aqara", "Wireless Remote Switch (Four Rocker)", ""],
         "params": [
             {
@@ -1814,9 +1814,9 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###无线六键
+    ###Wireless 6-Key
     {
-        # 无线开关（六键版）
+        # Wireless Switch（6-Key version）
         "lumi.remote.b686opcn01": ["Aqara", "Wireless Remote Switch (Six Rocker)", ""],
         "params": [
             {
@@ -1831,9 +1831,9 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###无线旋钮
+    ###Wireless Knob
     {
-        # 智能旋钮开关 H1（无线版）
+        # Smart Knob Switch H1 (Wireless version)
         "lumi.remote.rkba01": ["Aqara", "Wireless rotary switch H1", ""],
         "params": [
             {
@@ -1869,14 +1869,14 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###############################传感器###########################################
-    ###温湿度
+    ###############################Sensor###########################################
+    ###Temp/Humidity
     {
-        # 小米温湿度传感器
+        # Xiaomi Temp & Humidity Sensor
         "lumi.sensor_ht.v1": ["Xiaomi", "TH Sensor", "WSDCGQ01LM"],
-        # 温湿度传感器T1
+        # Temp/Humidity Sensor T1
         "lumi.sensor_ht.agl02": ["Aqara", "T1 TH Sensor", ""],
-        # 温湿度传感器
+        # Temp/Humidity Sensor
         "lumi.weather.v1": ["Aqara", "TH Sensor", "WSDCGQ11LM"],
         "params": [
             {
@@ -1903,9 +1903,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ### 空气质量
+    ### Air Quality
     {
-        # TVOC空气健康伴侣
+        # TVOC Air Quality Monitor
         "lumi.airmonitor.acn01": ["Aqara", "TVOC Sensor", ""],
         "params": [
             {
@@ -1948,9 +1948,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###光照传感器
+    ###Illuminance Sensor
     {
-        # 光照传感器 T1
+        # Illuminance Sensor T1
         "lumi.sen_ill.agl01": ["Aqara", "Light Sensor T1", ""],
         "params": [
             {
@@ -1977,14 +1977,14 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###人体传感器
+    ###Presence Sensor
     {
-        # 人体传感器
+        # Presence Sensor
         "lumi.sensor_motion.v1": ["Xiaomi", "Motion Sensor", "RTCGQ01LM"],
         "lumi.sensor_motion.v2": ["Xiaomi", "Motion Sensor", "RTCGQ01LM"],
-        # 人体传感器 P1
+        # Presence Sensor P1
         "lumi.motion.ac02": ["Aqara", "Motion Sensor P1", ""],
-        # 人体传感器 E1
+        # Presence Sensor E1
         "lumi.motion.acn001": ["Aqara", "Motion Sensor E1", ""],
         "params": [
             {
@@ -2002,9 +2002,9 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 人体传感器 带亮度
+        # Presence Sensor with Brightness
         "lumi.sensor_motion.aq2": ["Aqara", "Motion Sensor", "RTCGQ11LM"],
-        # 人体传感器 T1
+        # Presence Sensor T1
         "lumi.motion.agl02": ["Aqara", "Motion Sensor T1", ""],
         "params": [
             {
@@ -2034,9 +2034,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###高精度人体传感器
+    ###High Precision Presence Sensor
     {
-        # 高精度人体传感器
+        # High Precision Presence Sensor
         "lumi.motion.agl04": ["Aqara", "Precision Motion Sensor", "RTCGQ13LM"],
         "params": [
             {
@@ -2055,11 +2055,11 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###人体存在传感器
+    ###PresenceSensor
     {
-        # 人体存在
+        # Presence
         "lumi.motion.ac01": ["Aqara", "Presence Sensor FP1", "RTCZCGQ11LM"],
-        # AI智能存在传感器 FP1E
+        # AI Presence Sensor FP1E
         "lumi.sensor_occupy.agl1": ["Aqara", "Presence Sensor FP1E", ""],
         "params": [
             {
@@ -2078,7 +2078,7 @@ AIOT_DEVICE_MAPPING = [
                     MK_INIT_PARAMS: {
                         MK_HASS_NAME: "default",
                         "event_mapping": FP_MOTION_MAPPING,
-                        "entity_name": "移动监测事件",
+                        "entity_name": "Motion Detection Event",
                     },
                     MK_RESOURCES: {
                         "event": ("13.27.85", "_attr_native_value"),
@@ -2088,7 +2088,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 人体场景传感器 FP2
+        # Presence Sensor FP2
         "lumi.motion.agl001": ["Aqara", "Presence Sensor FP2", ""],
         "params": [
             {
@@ -2131,17 +2131,17 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###门窗传感器
+    ###Contact Sensor
     {
-        # 门窗传感器
+        # Contact Sensor
         "lumi.sensor_magnet.v1": ["Xiaomi", "Door Sensor", "MCCGQ01LM"],
         "lumi.sensor_magnet.v2": ["Xiaomi", "Door Sensor", "MCCGQ01LM"],
         "lumi.sensor_magnet.aq2": ["Aqara", "Door Sensor", "MCCGQ11LM"],
-        # 门窗传感器T1
+        # Contact SensorT1
         "lumi.magnet.agl02": ["Aqara", "Door Sensor T1", "MCCGQ12LM"],
-        # 门窗传感器E1
+        # Contact SensorE1
         "lumi.magnet.acn001": ["Aqara", "Door Sensor E1", "MCCGQ14LM"],
-        # 门窗传感器P1
+        # Contact SensorP1
         "lumi.magnet.ac01": ["Aqara", "Door Sensor P1", "MCCGQ13LM"],
         "params": [
             {
@@ -2159,9 +2159,9 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###水浸传感器
+    ###Water Leak Sensor
     {
-        # 水浸传感器
+        # Water Leak Sensor
         "lumi.sensor_wleak.aq1": ["Aqara", "Water Leak Sensor", "SJCGQ11LM"],
         "lumi.sensor_wleak.v1": ["Aqara", "Water Leak Sensor", ""],
         "lumi.flood.agl02": ["Aqara", "Water Leak Sensor T1", "SJCGQ12LM"],
@@ -2182,9 +2182,9 @@ AIOT_DEVICE_MAPPING = [
             }
         ],
     },
-    ###烟雾传感器
+    ###Smoke Sensor
     {
-        # Xiaomi 烟雾报警器
+        # Xiaomi Smoke Alarm
         "lumi.sensor_smoke.v1": ["Xiaomi", "Smoke Sensor", "JTYJ-GD-01LM/BW"],
         "lumi.sensor_smoke.acn03": ["Xiaomi", "Smoke Sensor", ""],
         "params": [
@@ -2199,9 +2199,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###天然气传感器
+    ###Natural Gas Sensor
     {
-        # 天然气报警器
+        # Natural Gas Alarm
         "lumi.sensor_natgas.v1": ["Aqara", "Gas Alarm", ""],
         "params": [
             {
@@ -2216,7 +2216,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # Aqara天然气报警器
+        # AqaraNatural Gas Alarm
         "lumi.sensor_gas.acn02": ["Aqara", "Gas Sensor", ""],
         "params": [
             {
@@ -2232,9 +2232,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ###############################门锁#############################################
+    ###############################Door Lock#############################################
     {
-        # P100门锁
+        # P100Door Lock
         "aqara.lock.wbzac1": ["Aqara", "DoorLock P100", ""],
         "params": [
             {
@@ -2261,9 +2261,9 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    #################################空调、地暖####################################
+    #################################Climate、Floor Heating####################################
     {
-        # 空调伴侣 P3
+        # AC Companion P3
         "lumi.aircondition.acn05": ["Aqara", "AC Partner P3", ""],
         "params": [
             {
@@ -2331,7 +2331,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 空调温控器
+        # ClimateThermostat
         "lumi.ctrl_hvac.es1": ["Aqara", "AC Controller", ""],
         "params": [
             {
@@ -2376,11 +2376,11 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 空调温控器
+        # ClimateThermostat
         "lumi.airrtc.tcpecn01": ["Aqara", "AC Controller", ""],
-        # 空调温控器 S2
+        # ClimateThermostat S2
         "lumi.airrtc.tcpecn02": ["Aqara", "AC Controller S2", ""],
-        # 空调温控器（CO2）
+        # HVAC Thermostat (CO2)
         "lumi.airrtc.tcpco2ecn01": ["Aqara", "AC Controller CO2", ""],
         "params": [
             {
@@ -2426,7 +2426,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 空调伴侣（升级版）
+        # AC Companion (Enhanced version)
         "lumi.acpartner.v3": ["Aqara", "AC Partner V3", ""],
         "params": [
             {
@@ -2479,9 +2479,9 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 空调伴侣
+        # AC Companion
         "lumi.acpartner.aq1": ["Aqara", "AC Partner", ""],
-        # 空调伴侣
+        # AC Companion
         "lumi.acpartner.es1": ["Aqara", "AC Partner", ""],
         "params": [
             {
@@ -2526,7 +2526,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 温控伴侣 T1（室内机）
+        # Thermostat Companion T1 (Indoor Unit)
         "aqara.airrtc.acn02": ["Aqara", "Thermostat Partner T1", ""],
         "params": [
             {
@@ -2569,7 +2569,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能温控器 S3
+        # Smart Thermostat S3
         "lumi.airrtc.pcacn2": ["Aqara", "Thermostat S3", ""],
         "lumi.airrtc.pcacn2_thermostat": ["Aqara", "Thermostat S3", ""],
         "params": [
@@ -2612,7 +2612,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # 智能阀式温控器 E1
+        # Smart Valve Controller E1
         "lumi.airrtc.agl001": ["Aqara", "Valve Thermostat E1", ""],
         "params": [
             {
@@ -2643,7 +2643,7 @@ AIOT_DEVICE_MAPPING = [
         ],
     },
     {
-        # VRF空调控制器
+        # VRFAC Controller
         "lumi.airrtc.vrfegl01": ["Aqara", "VRF AC Controller", ""],
         "params": [
             {
@@ -2686,7 +2686,7 @@ AIOT_DEVICE_MAPPING = [
             },
         ],
     },
-    ##################################不支持的设备##################################
+    ##################################Unsupported devices##################################
     {
         "lumi.camera.acn005": ["Aqara", "DoorBell G4", ""],
         "params": [],

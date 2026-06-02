@@ -94,9 +94,9 @@ class AiotDevice:
 class AiotEntityBase(Entity):
     def __init__(self, hass, device, res_params, type_name, channel=None, **kwargs):
         self.hass = hass
-        # 设备信息
+        # Device info
         self._device = device
-        # 参数
+        # Parameters
         self._res_params = res_params
         self._attr_name = device.device_name
         self._position_name = device.position_name
@@ -107,28 +107,28 @@ class AiotEntityBase(Entity):
         for k, v in res_params.items():
             resource_id = v[0].format(channel)
             self._supported_resources.append(resource_id)
-            # 获取资源名称
+            # Get resource name
             resource_name = device.get_resource_name(resource_id)
             if resource_name is not None:
                 self._attr_name = resource_name
-            # 人体传感器多通道
+            # Presence sensor multi-channel
             if device.model == "lumi.motion.agl001" and channel is not None:
                 self._attr_name = f"{self._attr_name} {channel}"
         if self._position_name is None:
             self._attr_name = "%s-%s" % (self._position_name, self._attr_name)
 
-        # 按键通道，多按键参数
+        # Button channel, multi-button parameters
         self._channel = channel
 
         self._attr_should_poll = False
         self._attr_firmware_version = device.firmware_version
-        # Zigbee信号强度
+        # Zigbee signal strength
         self._attr_zigbee_lqi = None
-        # 电压
+        # Voltage
         self._attr_voltage = None
-        # 数据更新触发时间，仅限来自mq消息获取到触发信息时间
+        # Data update trigger time, MQ message trigger time only
         self.trigger_time = None
-        # 设备厂商
+        # Device manufacturer
         manufacturer = (
             (device.model or "Lumi").split(".", 1)[0].capitalize()
             if device.manufacturer is None
@@ -212,7 +212,7 @@ class AiotEntityBase(Entity):
         return self._res_params[res_name][0].format(self._channel)
 
     async def async_set_res_value(self, res_name, value):
-        """设置资源值"""
+        """Set resource value."""
         res_id = self.get_res_id_by_name(res_name)
         _LOGGER.info(
             "method:async_set_res_value, device:{}, res_id:{}, set_value:{}".format(
@@ -224,7 +224,7 @@ class AiotEntityBase(Entity):
         )
 
     async def async_fetch_res_values(self, *args):
-        """获取资源值"""
+        """Get resource values."""
         res_ids = []
         if len(args) > 0:
             res_ids.extend(args)
@@ -238,7 +238,7 @@ class AiotEntityBase(Entity):
         )
 
     async def async_fetch_resource_history(self, page_size=1, *args):
-        """page_size过大会请求异常，如果为了获取最后状态只用1就可以"""
+        """Too large page_size will cause request exception, 1 is enough to get the last state."""
         res_ids = []
         if len(args) > 0:
             res_ids = args
@@ -267,7 +267,7 @@ class AiotEntityBase(Entity):
                 )
 
     async def async_set_resource(self, res_name, attr_value):
-        """设置aiot resource的值"""
+        """Set AIoT resource value."""
         tup_res = self._res_params.get(res_name)
         if tup_res:
             res_value = attr_value
@@ -281,14 +281,14 @@ class AiotEntityBase(Entity):
             if current_value != attr_value:
                 res_value = self.convert_attr_to_res(res_name, attr_value)
                 resp = await self.async_set_res_value(res_name, res_value)
-            # TODO 这里需要判断是否调用成功，再进行赋值
+            # TODO: Check if call succeeded before performing assignment
             self.__setattr__(tup_res[1], attr_value)
             self.schedule_update_ha_state()
             # self.async_write_ha_state()
             return resp
 
     async def async_set_attr(self, res_id, res_value, timestamp, write_ha_state=True):
-        """设置ha attr的值"""
+        """Set HA attribute value."""
         res_name = next(
             k
             for k, v in self._res_params.items()
@@ -308,7 +308,7 @@ class AiotEntityBase(Entity):
             self.__setattr__(tup_res[1], attr_value)
             if write_ha_state:
                 self.schedule_update_ha_state()
-                # self.async_write_ha_state()  # 初始化的时候不能执行这句话，会创建其他乱七八糟的对象
+                # self.async_write_ha_state()  # This cannot be executed during initialization, as other messy objects will be created
 
     async def async_device_connection(self, Open=False):
         """enable/disable device connection"""
@@ -338,11 +338,11 @@ class AiotEntityBase(Entity):
         )
 
     def convert_attr_to_res(self, res_name, attr_value):
-        """从attr转换到res"""
+        """Convert from attr to res."""
         return attr_value
 
     def convert_res_to_attr(self, res_name, res_value):
-        """从res转换到attr"""
+        """Convert from res to attr."""
         return res_value
 
 
@@ -365,7 +365,7 @@ class AiotToggleableEntityBase(AiotEntityBase):
 
     def convert_res_to_attr(self, res_name, res_value):
         if res_name == "toggle":
-            # res_value：0或1，字符串
+            # res_value: 0 or 1, string
             return res_value == "1"
         return super().convert_res_to_attr(res_name, res_value)
 
@@ -403,25 +403,25 @@ class AiotMessageHandler:
 
 
 class AiotManager:
-    # Aiot会话
+    # AIoT Session
     _session: AiotCloud = None
 
-    # 所有设备
+    # All devices
     _all_devices: Optional[Union[str, AiotDevice]] = {}
 
-    # 所有在HA中管理的设备
+    # All managed devices in HA
     _managed_devices: Optional[Union[str, AiotDevice]] = {}
 
-    # 配置对象和设备的对应关系，1：N
+    # Mapping between configuration objects and devices，1：N
     _entries_devices: Optional[Union[str, list]] = {}
 
-    # 所有配置对象
+    # All configuration objects
     _config_entries: Optional[Union[str, ConfigEntry]] = {}
 
-    # 设备和实体的对应关系，1：N
+    # Mapping between devices and entities，1：N
     _devices_entities: Optional[Union[str, list]] = {}
 
-    # 插件不支持的设备列表
+    # Unsupported devices list
     _unsupported_devices: Optional[list] = []
 
     def __init__(self, hass: HomeAssistant, session: AiotCloud):
@@ -432,17 +432,17 @@ class AiotManager:
 
     @property
     def session(self) -> AiotCloud:
-        """与Aiot建立的会话"""
+        """Established session with AIoT."""
         return self._session
 
     @property
     def all_devices(self) -> Optional[list]:
-        """获取Aiot Cloud上的所有设备"""
+        """Get all devices on AIoT Cloud."""
         return self._all_devices.values()
 
     @property
     def unmanaged_gateways(self) -> Optional[list]:
-        """获取HA为管理的网关设备"""
+        """Get managed gateway devices for HA."""
         gateways = []
         [
             gateways.append(x)
@@ -453,7 +453,7 @@ class AiotManager:
 
     @property
     def unsupported_devices(self) -> Optional[list]:
-        """插件不支持的设备列表"""
+        """Unsupported devices list."""
         devices = []
         [devices.append(x) for x in self._all_devices.values() if not x.is_supported]
         return devices
@@ -468,7 +468,7 @@ class AiotManager:
         try:
             msg_time = ts_format_str_ms(msg.get("time"), self._hass)
             if msg.get("msgType"):
-                # 属性消息，resource_report
+                # Attribute message, resource_report
                 for x in msg["data"]:
                     entities = self._devices_entities.get(x["subjectId"])
                     if entities:
@@ -505,24 +505,24 @@ class AiotManager:
                         msg.get("eventType"), msg_time, msg["data"]
                     )
                 )
-                # 事件消息
-                if msg["eventType"] == "gateway_bind":  # 网关绑定
+                # Event message
+                if msg["eventType"] == "gateway_bind":  # Gateway bind
                     pass
-                elif msg["eventType"] == "subdevice_bind":  # 子设备绑定
+                elif msg["eventType"] == "subdevice_bind":  # Sub-device bind
                     pass
-                elif msg["eventType"] == "gateway_unbind":  # 网关解绑
+                elif msg["eventType"] == "gateway_unbind":  # Gateway unbind
                     pass
-                elif msg["eventType"] == "unbind_sub_gw":  # 子设备解绑
+                elif msg["eventType"] == "unbind_sub_gw":  # Sub-device unbind
                     pass
-                elif msg["eventType"] == "gateway_online":  # 网关在线
+                elif msg["eventType"] == "gateway_online":  # Gateway online
                     pass
-                elif msg["eventType"] == "gateway_offline":  # 网关离线
+                elif msg["eventType"] == "gateway_offline":  # Gateway offline
                     pass
-                elif msg["eventType"] == "subdevice_online":  # 子设备在线
+                elif msg["eventType"] == "subdevice_online":  # Sub-device online
                     pass
-                elif msg["eventType"] == "subdevice_offline":  # 子设备离线
+                elif msg["eventType"] == "subdevice_offline":  # Sub-device offline
                     pass
-                else:  # 其他事件暂不处理
+                else:  # Other events not processed for now
                     pass
             else:
                 _LOGGER.info(
@@ -534,7 +534,7 @@ class AiotManager:
             _LOGGER.exception("[msg_callback, error]process_message_error.\n")
 
     async def async_refresh_all_devices(self):
-        """获取Aiot所有设备"""
+        """Get all AIoT devices."""
         self._all_devices = {}
         results = await self._session.async_query_all_devices_info()
         for x in results:
@@ -546,11 +546,11 @@ class AiotManager:
             self._all_devices.setdefault(x["did"], device)
 
     async def async_add_all_devices(self, config_entry: ConfigEntry):
-        await self.async_refresh_all_devices()  # 刷新一次所有设备列表
+        await self.async_refresh_all_devices()  # Refresh all devices list once
         self._entries_devices.setdefault(config_entry.entry_id, [])
         self._config_entries[config_entry.entry_id] = config_entry
         for device in self.all_devices:
-            # 这里看情况检查did是否已经存在，理论上来说应该不会重复，现在代码未做重复判断
+            # Check if did already exists; theoretically duplicates should not occur, no duplicate check implemented
             if device.is_supported:
                 self._managed_devices[device.did] = device
                 self._entries_devices[config_entry.entry_id].append(device.did)
@@ -575,7 +575,7 @@ class AiotManager:
     async def async_add_entities(
         self, config_entry: ConfigEntry, entity_type: str, cls_list, async_add_entities
     ):
-        """根据ConfigEntry创建Entity"""
+        """Create Entity based on ConfigEntry."""
         devices = []
         for x in self._entries_devices[config_entry.entry_id]:
             for i in range(len(self._managed_devices[x].platforms)):
@@ -601,9 +601,9 @@ class AiotManager:
                 ch_count = None
                 ch_start = None
                 if j == 0:
-                    # 这里需要处理多通道特殊设备
+                    # Special multi-channel device handling here
                     if device.model == "lumi.airrtc.vrfegl01":
-                        # VRF空调控制器
+                        # VRF AC Controller
                         try:
                             resp = await self._session.async_query_resource_value(
                                 device.did, ["13.1.85"]
@@ -618,7 +618,7 @@ class AiotManager:
                             _LOGGER.warning(f"Failed to query channel count for VRF AC Controller: {ex}. Defaulting to 1.")
                             ch_count = 1
                     elif device.model == "lumi.motion.agl001":
-                        # 人体场景传感器 FP2
+                        # Presence Sensor FP2
                         try:
                             resource_ids = [f"3.{x + 1}.85" for x in range(30)]
                             resp = await self._session.async_query_resource_value(

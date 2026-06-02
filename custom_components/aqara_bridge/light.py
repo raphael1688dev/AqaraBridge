@@ -81,10 +81,10 @@ class AiotLightEntity(AiotToggleableEntityBase, LightEntity):
 
     def convert_attr_to_res(self, res_name, attr_value):
         if res_name == "brightness":
-            # attr_value：0-255，亮度
+            # attr_value: 0-255, brightness
             return int(attr_value * 100 / 255)
         elif res_name == "color" and self._attr_color_mode == ColorMode.HS:
-            # attr_value：hs颜色
+            # attr_value: hs color
             rgb_color = color_util.color_hs_to_RGB(*attr_value)
             return int(
                 "{}{}{}{}".format(
@@ -108,10 +108,10 @@ class AiotLightEntity(AiotToggleableEntityBase, LightEntity):
 
     def convert_res_to_attr(self, res_name, res_value):
         if res_name == "brightness":
-            # res_value：0-100，亮度百分比
+            # res_value: 0-100, brightness percentage
             return int(int(res_value) * 255 / 100)
         elif res_name == "color" and self._attr_color_mode == ColorMode.HS:
-            # res_value：十进制整数字符串
+            # res_value: decimal integer string
             argb = hex(int(res_value))
             return color_util.color_RGB_to_hs(
                 int(argb[4:6], 16), int(argb[6:8], 16), int(argb[8:10], 16)

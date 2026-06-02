@@ -325,12 +325,12 @@ class AiotAirrtcVrfegl01Entity(AiotEntityBase, ClimateEntity):
 
     def convert_res_to_attr(self, res_name, res_value):
         if res_name == "ac_state":
-            # res_value: 十进制字符串
+            # res_value: decimal string
             ac_state_bin = bin(int(res_value))[2:].zfill(32)
             self.ac_state_to_attr(ac_state_bin)
 
     def ac_state_to_attr(self, bin):
-        """空调状态转HA属性."""
+        """Convert AC state to HA attributes."""
         power = int(bin[0:4], 2)
         mode = int(bin[4:8], 2)
         fan = int(bin[8:12], 2)
@@ -338,7 +338,7 @@ class AiotAirrtcVrfegl01Entity(AiotEntityBase, ClimateEntity):
         swing = int(bin[14:16], 2)
         temp = int(bin[16:24], 2)
         other = int(bin[24:32], 2)
-        # 暂存不需要的属性以便写回云端
+        # Temporarily cache unused attributes to write back to cloud
         match = re.search(r"(\d+)\.(\d+)\.(\d+)", self.get_res_id_by_name("ac_state"))
         if match:
             channel_id = match.group(2)
@@ -366,7 +366,7 @@ class AiotAirrtcVrfegl01Entity(AiotEntityBase, ClimateEntity):
         self.schedule_update_ha_state()
 
     def attr_to_ac_state(self, attr, value):
-        """HA属性 转 ac_state."""
+        """Convert HA attributes to ac_state."""
         power = 0 if self._attr_hvac_mode == HVACMode.OFF else 1
         mode = AC_STATE_ATTR_RES_MAPPING["hvac_mode"].get(self._attr_hvac_mode, "2")
         temp = int(self._attr_target_temperature)
@@ -462,13 +462,13 @@ class AiotAirrtcTcpecn02Entity(AiotEntityBase, ClimateEntity):
         if res_name == "current_temperature":
             return int(res_value)
         if res_name == "ac_state":
-            # res_value: 十进制字符串
+            # res_value: decimal string
             ac_state_bin = bin(int(res_value))[2:].zfill(32)
 
             self.ac_state_to_attr(ac_state_bin)
 
     def ac_state_to_attr(self, bin):
-        """空调状态转HA属性."""
+        """Convert AC state to HA attributes."""
         power = int(bin[0:4], 2)
         mode = int(bin[4:8], 2)
         fan = int(bin[8:12], 2)
@@ -501,7 +501,7 @@ class AiotAirrtcTcpecn02Entity(AiotEntityBase, ClimateEntity):
         self.schedule_update_ha_state()
 
     def attr_to_ac_state(self, attr, value):
-        """HA属性 转 ac_state."""
+        """Convert HA attributes to ac_state."""
         power = 0 if self._attr_hvac_mode == HVACMode.OFF else 1
         mode = AC_STATE_ATTR_RES_MAPPING["hvac_mode"].get(self._attr_hvac_mode, "2")
         temp = int(self._attr_target_temperature)
@@ -591,21 +591,21 @@ class AiotACPartnerP3Entity(AiotEntityBase, ClimateEntity):
             self.ac_quick_cool_to_attr(res_value)
 
     def ac_fun_ctl_to_attr(self, value):
-        """空调功能控制 8.0.2116(P3) 转HA属性."""
+        """Convert AC function control 8.0.2116(P3) to HA attributes."""
         if value:
-            # 用于处理ac_fun_ctl内容
+            # Used to handle ac_fun_ctl content
             pattern = r"^P(\d+)_M(\d+)_T(\d+)_S(\d+)_D(\d+)(?:_L(\d+))?$"
             match = re.fullmatch(pattern, value)
             if not match:
                 _LOGGER.error(f"Invalid 8.0.2116(P3) format.")
                 return
-            # 提取参数（注意group6可能为None）
-            power = int(match.group(1))  # P值
-            mode = int(match.group(2))  # M值
-            temp = int(match.group(3))  # T值
-            fan = int(match.group(4))  # S值
-            swing = int(match.group(5))  # D值
-            light = match.group(6)  # L值（可能为None）
+            # Extract parameters (note group6 may be None)
+            power = int(match.group(1))  # P value
+            mode = int(match.group(2))  # M value
+            temp = int(match.group(3))  # T value
+            fan = int(match.group(4))  # S value
+            swing = int(match.group(5))  # D value
+            light = match.group(6)  # L value (may be None)
             light = int(light) if light is not None else None
 
             if power == 1:
@@ -637,7 +637,7 @@ class AiotACPartnerP3Entity(AiotEntityBase, ClimateEntity):
         self.schedule_update_ha_state()
 
     def attr_to_ac_fun_ctl(self, attr, value):
-        """HA属性 转 空调功能控制 8.0.2116(P3)."""
+        """Convert HA attributes to AC function control 8.0.2116(P3)."""
 
         power = 1 if self._attr_hvac_mode == HVACMode.OFF else 0
 

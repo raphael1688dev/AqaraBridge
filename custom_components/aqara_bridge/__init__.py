@@ -100,7 +100,7 @@ async def async_setup_entry(hass, entry):
     aiotcloud.set_key_id(data[CONF_ENTRY_KEY_ID])
     aiotcloud.update_token_event_callback = token_updated
     if manager._msg_handler is not None:
-        # 如果重新配置，重新启动mq
+        # If reconfigured, restart MQ
         manager._msg_handler.stop()
     await manager.start_msg_hanlder(
         data[CONF_ENTRY_APP_ID], data[CONF_ENTRY_APP_KEY], data[CONF_ENTRY_KEY_ID]
@@ -128,7 +128,7 @@ async def async_setup_entry(hass, entry):
             )
             hass.config_entries.async_update_entry(entry, data=auth_entry)
         else:
-            # TODO 这里需要处理刷新令牌失败的情况
+            # TODO: handle token refresh failure here
             return False
 
     hass.data[DOMAIN][HASS_DATA_AUTH_ENTRY_ID] = entry

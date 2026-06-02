@@ -63,11 +63,11 @@ class AiotMotionBinarySensor(AiotBinarySensorEntity, BinarySensorEntity):
         AiotBinarySensorEntity.__init__(
             self, hass, device, res_params, channel, **kwargs
         )
-        # 关闭间隔
+        # Cooldown interval
 
         self._attr_detect_time = 150
 
-        # 最后移动时间
+        # Last motion time
         self._last_on = 0
         self._last_off = 0
         self._timeout_pos = 0
@@ -102,11 +102,11 @@ class AiotMotionBinarySensor(AiotBinarySensorEntity, BinarySensorEntity):
         if res_name in ["firmware_version", "zigbee_lqi", "voltage"]:
             return super().convert_res_to_attr(res_name, res_value)
 
-        # 间隔时间刷新
+        # Interval refresh
         if res_name in ["detect_time"]:
             return int(res_value)
 
-        # 移动只会有on被触发
+        # Motion only triggers on state
         if self._last_on == 0 and self.trigger_time is not None:
             self._last_on = self.trigger_time
 
@@ -122,7 +122,7 @@ class AiotMotionBinarySensor(AiotBinarySensorEntity, BinarySensorEntity):
             return
         self._attr_is_on = bool(res_value)
 
-        # 检查是否超过最长delay时间，超过未无人状态
+        # Check if maximum delay is exceeded, if so set to unoccupied
         if time_now - self.trigger_time > self.detect_time:
             self._attr_is_on = False
             _LOGGER.info(
