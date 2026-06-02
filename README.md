@@ -2,10 +2,10 @@
 
 Based on the Aqara Open Platform, providing device control and subscription via cloud APIs.
 
-[![version](https://img.shields.io/github/manifest-json/v/bernard3378/AqaraBridge?filename=custom_components%2Faqara_bridge%2Fmanifest.json)](https://github.com/bernard3378/AqaraBridge/releases/latest) [![stars](https://img.shields.io/github/stars/bernard3378/AqaraBridge)](https://github.com/bernard3378/AqaraBridge/stargazers) [![issues](https://img.shields.io/github/issues/bernard3378/AqaraBridge)](https://github.com/bernard3378/AqaraBridge/issues) [![hacs](https://img.shields.io/badge/HACS-Default-orange.svg)](https://hacs.xyz)
+[![version](https://img.shields.io/github/manifest-json/v/raphael1688dev/AqaraBridge?filename=custom_components%2Faqara_bridge%2Fmanifest.json)](https://github.com/raphael1688dev/AqaraBridge/releases/latest) [![stars](https://img.shields.io/github/stars/raphael1688dev/AqaraBridge)](https://github.com/raphael1688dev/AqaraBridge/stargazers) [![issues](https://img.shields.io/github/issues/raphael1688dev/AqaraBridge)](https://github.com/raphael1688dev/AqaraBridge/issues) [![hacs](https://img.shields.io/badge/HACS-Default-orange.svg)](https://hacs.xyz)
 
 ## One-Click Add to HACS
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=bernard3378&repository=AqaraBridge&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=raphael1688dev&repository=AqaraBridge&category=integration)
 
 ## Developer Account Required
 
@@ -13,7 +13,7 @@ Apply for an Aqara IoT Developer Account: [Aqara IoT Cloud](https://developer.aq
 
 * Note: If you encounter an error during installation saying this integration does not support configuration via the UI, it is highly likely that the rocketmq library is missing. The current version only automatically integrates x86 and arm64 architectures.
 * [V2.1.1] has added support for more architectures. If similar issues persist, please copy the log messages and submit an Issue.
-* Currently, configuring via the HACS store is supported. Custom repository URL: bernard3378/AqaraBridge
+* Currently, configuring via the HACS store is supported. Custom repository URL: raphael1688dev/AqaraBridge
 
 Important Tips:
 * You need to apply for your own Aqara developer account.
@@ -23,7 +23,10 @@ Important Tips:
 * Message checking: If you need to confirm messages, change the log level of this integration to info to check the message logs.
 
 ## Version History
-Current version V2.1.5 is a routine update, which is currently the most stable version.
+Current version V2.1.6 is a routine update, which is currently the most stable version.
+
+V2.1.6
+* Updated all GitHub repository documentation, HACS installation links, and issue tracker URLs to point to `raphael1688dev/AqaraBridge`.
 
 V2.1.5
 * Translated the entire codebase (including comments, docstrings, mapping constants, and entity names) from Chinese to English.
@@ -215,4 +218,4 @@ V1.0.0
 * Initial release.
 
 Note: This integration only supports devices I own or similar models. If you have unsupported devices and know Python, feel free to submit changes at:
-[custom_components/aqara_bridge/core/aiot_mapping.py](https://github.com/meishild/AqaraBridge/blob/master/custom_components/aqara_bridge/core/aiot_mapping.py)
+[custom_components/aqara_bridge/core/aiot_mapping.py](https://github.com/raphael1688dev/AqaraBridge/blob/master/custom_components/aqara_bridge/core/aiot_mapping.py)
