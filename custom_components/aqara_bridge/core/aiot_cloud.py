@@ -106,7 +106,7 @@ class AiotCloud:
         return headers
 
     async def _async_invoke_aqara_cloud_api(
-        self, intent: str, only_result: bool = True, list_data: bool = False, **kwargs
+        self, intent: str, only_result: bool = True, list_data: bool = False, retry_count: int = 0, **kwargs
     ):
         """调用Aqara Api"""
         try:
@@ -136,19 +136,24 @@ class AiotCloud:
                         f"Call Aiot api failed，request:{payload},return:{jo}"
                     )
                     if jo["code"] == 108:
-                        # 令牌过期或异常，正在尝试自动刷新
-                        _LOGGER.warning(f"Aiot token expired, trying to auto refresh！")
-                        new_jo = await self.async_refresh_token(self.refresh_token)
-                        if new_jo["code"] == 0:
-                            # Aiot令牌更新成功！
-                            _LOGGER.info(f"Aiot token refresh successfully！")
-                            return await self._async_invoke_aqara_cloud_api(
-                                intent, only_result, list_data, **kwargs
-                            )
+                        if retry_count < 1:
+                            # 令牌过期或异常，正在尝试自动刷新
+                            _LOGGER.warning(f"Aiot token expired, trying to auto refresh！")
+                            new_jo = await self.async_refresh_token(self.refresh_token)
+                            if new_jo["code"] == 0:
+                                # Aiot令牌更新成功！
+                                _LOGGER.info(f"Aiot token refresh successfully！")
+                                return await self._async_invoke_aqara_cloud_api(
+                                    intent, only_result, list_data, retry_count=retry_count + 1, **kwargs
+                                )
+                            else:
+                                # Aiot令牌更新失败，请重新授权
+                                _LOGGER.error(
+                                    "Aiot token refresh failed, please do authorization again！"
+                                )
                         else:
-                            # Aiot令牌更新失败，请重新授权
                             _LOGGER.error(
-                                "Aiot token refresh failed, please do authorization again！"
+                                "Aiot token refresh loop detected, aborting retry to prevent crash."
                             )
                 return jo.get("result")
             else:
