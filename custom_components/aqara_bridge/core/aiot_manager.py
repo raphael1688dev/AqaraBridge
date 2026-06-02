@@ -568,10 +568,8 @@ class AiotManager:
                 for i in range(len(self._managed_devices[x].platforms)):
                     platforms.extend(self._managed_devices[x].platforms[i].keys())
 
-        self._hass.async_create_task(
-            self._hass.config_entries.async_forward_entry_setups(
-                config_entry, set(platforms)
-            )
+        await self._hass.config_entries.async_forward_entry_setups(
+            config_entry, set(platforms)
         )
 
     async def async_add_entities(

@@ -174,6 +174,7 @@ class AqaraBridgeFlowHandler(ConfigFlow, domain=DOMAIN):
 class OptionsFlowHandler(OptionsFlow):
     def __init__(self) -> None:
         """Initialize options flow."""
+        super().__init__()
         self.account = None
         self.country_code = None
         self.account_type = 0

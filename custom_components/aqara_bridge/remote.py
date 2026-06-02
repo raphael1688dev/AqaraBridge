@@ -2,7 +2,7 @@
 import asyncio
 import time
 import voluptuous as vol
-from datetime import datetime
+from datetime import datetime, timezone
 from homeassistant.helpers import config_validation as cv
 from homeassistant.components.remote import (
     ATTR_DELAY_SECS,
@@ -86,7 +86,7 @@ class AiotRemoteIrda(AiotEntityBase, RemoteEntity):
 
         for _ in range(num_repeats):
             await self.async_set_resource("irda", command)
-            time.sleep(delay)
+            await asyncio.sleep(delay)
 
     async def async_learn_command(self, **kwargs):
         """Handle a learn command."""
@@ -96,8 +96,8 @@ class AiotRemoteIrda(AiotEntityBase, RemoteEntity):
         if isinstance(resp, dict):
             keyid = resp['keyId']
 
-            start_time = datetime.utcnow()
-            while (datetime.utcnow() - start_time) < datetime.timedelta(seconds=timeout):
+            start_time = datetime.now(timezone.utc)
+            while (datetime.now(timezone.utc) - start_time) < datetime.timedelta(seconds=timeout):
                 message = await self.hass.async_add_executor_job(
                     self.async_received_learnresult, keyid)
                 # _LOGGER.info("Message received from device: '%s'", message)

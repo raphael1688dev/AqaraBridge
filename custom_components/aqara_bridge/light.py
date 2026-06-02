@@ -74,7 +74,7 @@ class AiotLightEntity(AiotToggleableEntityBase, LightEntity):
             await self.async_set_resource("color_temp", color_temp)
 
         color_temp_kelvin = kwargs.get("color_temp_kelvin")
-        if color_temp:
+        if color_temp_kelvin:
             await self.async_set_resource("color_temp_kelvin", color_temp_kelvin)
 
         await super().async_turn_on(**kwargs)

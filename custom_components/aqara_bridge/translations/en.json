@@ -38,7 +38,7 @@
     },
     "options": {
         "step": {
-            "inits": {
+            "init": {
                 "data": {
                     "field_country_code": "Cloud Server Country/Region",
                     "field_account": "Aqara Home Account (Cellular Number/ Email)",
